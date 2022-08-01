@@ -22,7 +22,7 @@ def extract_user(headers):
 if django.VERSION >= (1, 10):
     def allow_authenticated(private_file):
         user = extract_user(private_file.request.headers)
-        if not user:
+        if not (user and user.is_active):
             return False
         is_authenticated = (user.picture == private_file.relative_name)
         return is_authenticated
