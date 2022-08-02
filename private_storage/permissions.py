@@ -13,7 +13,7 @@ if django.VERSION >= (1, 10):
         if not authenticated:
             return False
         user, _ = authenticated
-        is_authenticated = (user.picture == private_file.relative_name)
+        is_authenticated = (str(user.id) == private_file.relative_name.split('/')[1])
         return is_authenticated
 
     def allow_staff(private_file):
